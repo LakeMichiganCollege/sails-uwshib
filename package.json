@@ -5,7 +5,7 @@
   "keywords": [
     "sails", "sails-auth", "passport", "saml", "shibboleth", "sso", "UW", "University of Washington"
   ],
-  "description": "A sails-auth-compatible implementation of Passport authentication strategy for University of Washington's Shibboleth service.",
+  "description": "A sails-auth compatible implementation of Passport authentication strategy for University of Washington's Shibboleth service.",
   "homepage": "https://github.com/kevintechie/passport-uwshib",
   "repository": {
     "type": "git",
