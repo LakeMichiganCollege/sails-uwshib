@@ -1,32 +1,27 @@
 {
-    "name": "passport-uwshib",
-    "version": "0.1.1",
-    "license": "MIT",
-    "keywords": [
-        "passport",
-        "saml",
-        "shibboleth",
-        "sso",
-        "UW",
-        "University of Washington"
-    ],
-    "description": "Passport authentication strategy for University of Washington's Shibboleth service",
-    "homepage": "https://github.com/drstearns/passport-uwshib",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/drstearns/passport-uwshib"
-    },
-    "author": {
-        "name": "Dave Stearns",
-        "email": "dlsinfo@uw.edu",
-        "url": "https://ischool.uw.edu/people/faculty/dlsinfo"
-    },
-    "bugs": "https://github.com/drstearns/passport-uwshib/issues",
-    "main": "index.js",
-    "dependencies": {
-        "passport-saml": ">=0.10.0"
-    },
-    "engines": {
-        "node": ">=0.10.28"
-    }
+  "name": "sails-uwshib",
+  "version": "0.1.0",
+  "license": "MIT",
+  "keywords": [
+    "sails", "sails-auth", "passport", "saml", "shibboleth", "sso", "UW", "University of Washington"
+  ],
+  "description": "A sails-auth-compatible implementation of Passport authentication strategy for University of Washington's Shibboleth service.",
+  "homepage": "https://github.com/kevintechie/passport-uwshib",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevintechie/sails-uwshib"
+  },
+  "author": {
+    "name": "Kevin Coleman",
+    "email": "kevin@kevintechie.com",
+    "url": ""
+  },
+  "bugs": "https://github.com/kevintechie/sails-uwshib/issues",
+  "main": "index.js",
+  "dependencies": {
+    "passport-saml": ">=0.10.0"
+  },
+  "engines": {
+    "node": ">=0.10.28"
+  }
 }
