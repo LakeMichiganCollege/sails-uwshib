@@ -1,6 +1,6 @@
 {
   "name": "sails-uwshib",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "license": "MIT",
   "keywords": [
     "sails", "sails-auth", "passport", "saml", "shibboleth", "sso", "UW", "University of Washington"

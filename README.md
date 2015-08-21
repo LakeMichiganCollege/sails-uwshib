@@ -15,6 +15,8 @@ Configuration
 -------------
 While this strategy will work with any Passportjs-based authentication implementation, these configuration instructions are specific to sails-auth.
 
+Start by following the first two steps of the sails-auth module configuration.
+
 **< project >/config/passport.js**
 Setup the passport configuration object.
 
@@ -53,12 +55,12 @@ Create the sails-auth Passport protocol adapter file.
         identifier: profile.netId,
         protocol:   'uwsaml'
       };
-    
+
       sails.services.passport.connect(req, query, profile, next);
     };
 
 **< project >/services/protocols/index.js**
-Require the uwsaml.js protocol file. 
+Require the uwsaml.js protocol file.
 
     uwsaml: require('./uwsaml')
 
@@ -66,3 +68,11 @@ Require the uwsaml.js protocol file.
 There is currently a bug in sails-auth (as of version v1.3.1) that prevents local project protocol files from being loaded. Add the following line to work around the bug.
 
     protocols: require('./protocols')
+
+Database Setup
+--------------
+Before you can authenticate, you must make sure that the database contains the tables for the Passport and User models. You will either need to migrate your dev database to your test and production servers or `sails lift` your application in development mode. Another solution is to temporarily point your development application at your test or production database server.
+
+Authenticate
+------------
+When the application is running, you can initiate authentication at the /auth/uwsaml route. The application will redirect you to the /auth/uwsaml/callback route and display your user information in JSON format after successful authentication.
