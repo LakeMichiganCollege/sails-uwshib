@@ -64,7 +64,7 @@ module.exports.convertProfileToUser = function (profile) {
       value: user.principalName
     }
   ];
-  console.log('returning user', user);
+
   return user;
 };
 
