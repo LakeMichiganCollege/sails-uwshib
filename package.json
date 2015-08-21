@@ -13,8 +13,7 @@
   },
   "author": {
     "name": "Kevin Coleman",
-    "email": "kevin@kevintechie.com",
-    "url": ""
+    "email": "kevin@kevintechie.com"
   },
   "bugs": "https://github.com/kevintechie/sails-uwshib/issues",
   "main": "index.js",
