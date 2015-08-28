@@ -42,7 +42,7 @@ var profileAttrs = {
   'urn:oid:1.2.840.113994.200.24':     'regId'
 };
 
-module.exports.convertProfileToUser = function (profile) {
+function convertProfileToUser(profile) {
   var user = {};
   var niceName;
   var idx;
@@ -66,7 +66,7 @@ module.exports.convertProfileToUser = function (profile) {
   ];
 
   return user;
-};
+}
 
 /**
  * Passport Strategy for UW Shibboleth Authentication
@@ -97,3 +97,65 @@ module.exports.Strategy = function (options, verifyUser) {
 };
 
 util.inherits(module.exports.Strategy, saml.Strategy);
+
+module.exports.Strategy.prototype.authenticate = function (req, options) {
+  var self = this;
+
+  options.samlFallback = options.samlFallback || 'login-request';
+
+  function validateCallback(err, profile, loggedOut) {
+    if (err) {
+      return self.error(err);
+    }
+
+    if (loggedOut) {
+      req.logout();
+      if (profile) {
+        req.samlLogoutRequest = profile;
+        return self._saml.getLogoutResponseUrl(req, redirectIfSuccess);
+      }
+      return self.pass();
+    }
+
+    var verified = function (err, user, info) {
+      if (err) {
+        return self.error(err);
+      }
+
+      if (!user) {
+        return self.fail(info);
+      }
+
+      self.success(user, info);
+    };
+
+    if (self._passReqToCallback) {
+      self._verify(req, convertProfileToUser(profile), verified);
+    } else {
+      self._verify(convertProfileToUser(profile), verified);
+    }
+  }
+
+  function redirectIfSuccess(err, url) {
+    if (err) {
+      self.error(err);
+    } else {
+      self.redirect(url);
+    }
+  }
+
+  if (req.body && req.body.SAMLResponse) {
+    this._saml.validatePostResponse(req.body, validateCallback);
+  } else if (req.body && req.body.SAMLRequest) {
+    this._saml.validatePostRequest(req.body, validateCallback);
+  } else {
+    var operation = {
+      'login-request':  'getAuthorizeUrl',
+      'logout-request': 'getLogoutUrl'
+    }[ options.samlFallback ];
+    if (!operation) {
+      return self.fail();
+    }
+    this._saml[ operation ](req, redirectIfSuccess);
+  }
+};

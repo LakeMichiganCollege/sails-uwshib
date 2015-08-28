@@ -48,9 +48,7 @@ The default sails-auth installation defines a route for the authentication callb
 Create the sails-auth Passport protocol adapter file.
 
     'use strict';
-    var uwshib = require('sails-uwshib');
     module.exports = function (req, profile, next) {
-      profile = uwshib.convertProfileToUser(profile);
       var query = {
         identifier: profile.netId,
         protocol:   'uwsaml'

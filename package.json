@@ -1,6 +1,6 @@
 {
   "name": "sails-uwshib",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "keywords": [
     "sails", "sails-auth", "passport", "saml", "shibboleth", "sso", "UW", "University of Washington"
@@ -13,8 +13,7 @@
   },
   "author": {
     "name": "Kevin Coleman",
-    "email": "kevin@kevintechie.com",
-    "url": ""
+    "email": "kevin@kevintechie.com"
   },
   "bugs": "https://github.com/kevintechie/sails-uwshib/issues",
   "main": "index.js",
